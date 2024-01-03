@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🥰 Futurealize with Tech
+略称は【FWT】
 
-## Getting Started
+## 🤩 概要
+卒業メンターにメッセージを共有できるサービス！！
+<br/>
+ライフイズテックの卒業メンバーの[のぞみ](https://twitter.com/lit_n59)・[さっきー](https://twitter.com/am2525nyan)・[うしょう](https://twitter.com/usyou081)・[いのれん](https://twitter.com/inoren_lit)が作成してます。
 
-First, run the development server:
+## ⚒️ 使用した技術
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js 14.0.4
+- JavaScript
+- Sass?
+- framer-motion（アニメーション）
+- Supabase
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 デプロイ
+フロントエンド：Vercel
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📁 ファイル構成
+    .
+    ├── public/
+    │   ├── next.svg
+    │   └── vercel.svg
+    │
+    ├── src/
+    │   ├── app/
+    │   │   ├── layout.js
+    │   │   ├── template.js（ローディング画面）
+    │   │   ├── page.js
+    │   │   ├── global.scss
+    │   │   ├── page.module.scss
+    │   │   ├── favicon.ico
+    │   │   ├── apple-touch-icon.png
+    │   │   ├── opengraph-image.png
+    │   │   └── twitter-image.png
+    │   │
+    │   ├── components/（以下のファイルは頭文字大文字）
+    │   │   ├── XXX/ (XXXに関するコンポーネント)
+    │   │   │
+    │   │   └── UI/ (ボタンなど細々したUI)
+    │   │       ├── Animation/（Lottieのコンポーネント）
+    │   │       ├── Button/
+    │   │       ├── Menu/
+    │   │       ├── Modal/
+    │   │       └── Screen/
+    │   │
+    │   └── lib/（配列や関数などの処理）
+    │       ├── Function/（関数）
+    │       ├── Image/（画像配列）
+    │       ├── Key/（ローカルストレージなどのkey）
+    │       └── Site/（メディアのURL）
+    │
+    ├── .eslintrc.json
+    ├── .gitignore
+    ├── next-env.d.ts
+    ├── next.config.js
+    ├── package.json
+    ├── package-lock.json
+    ├── README.md
+    └── tsconfig.json
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 🪛 importの順番
 
-## Learn More
+1. ReactHooks
+2. styles
+3. motion (framer-motion)
+4. next (Image, Link etc...)
+5. context
+6. ライブラリ
+7. lib
+8. react-icons
+9. 画像系
 
-To learn more about Next.js, take a look at the following resources:
+## 👔 CSS styleの順番
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. box-sizing
+2. width, height, max, min
+3. position (relative以外)
+4. display
+5. margin
+6. padding
+7. font系
+8. border系 (radiusなど)
+9. outline
+10. color (font → border → background)
+11. 画像系
+12. position: relative;
+13. cursor
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
