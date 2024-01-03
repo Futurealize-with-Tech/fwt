@@ -88,3 +88,22 @@
 12. position: relative;
 13. cursor
 
+## 🌈 CSSの変数を使おう
+`global.scss`の`:root`内で、色などを指定する。(できればRGB値で)
+<br/>
+<br/>
+下記のように、指定する。
+
+    :root {
+        --primary-pink: 249, 193, 207;
+    }
+
+そうすると下記のように色を指定することができる。
+
+    color: rgb(var(--primary-pink));
+
+RGB値で変数にしたいのは、下記のようにopacityを自由に調整できるから。
+
+    color: rgb(var(--primary-pink), 0.5);
+
+メインの色には`--primary-色`のように命名する。
