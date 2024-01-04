@@ -1,17 +1,39 @@
 :root {
-  --font-mono: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+  --font-mono: 'M PLUS Rounded 1c', ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   --primary-pink: 249, 193, 207;
+  --primary-purple: 213, 149, 238;
+
+  --white: 255, 255, 255;
 
   --text-color: 64, 64, 72;
+}
+
+@media screen and (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1200px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 1401px) {
+  html {
+    font-size: 18px;
+  }
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: var(--font-mono);
 }
 
 html,
@@ -26,4 +48,13 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.all-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
