@@ -5,6 +5,7 @@
 
   --primary-pink: 249, 193, 207;
   --primary-purple: 213, 149, 238;
+  --primary-gray: 128, 128, 138;
 
   --white: 255, 255, 255;
 
@@ -57,4 +58,5 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  padding-top: 6.5rem;
 }
