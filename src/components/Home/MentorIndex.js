@@ -1,6 +1,8 @@
 'use client'
 
 import styles from './home.module.scss';
+import MentorGridBox from '../Mentor/MentorGridBox';
+import { mentors } from '@/lib/mentors';
 
 export default function MentorIndex() {
     return (
@@ -12,6 +14,13 @@ export default function MentorIndex() {
                 </p>
             </div>
             <div className={styles['mentor-grid-container']}>
+                {mentors.map((item) => (
+                    <MentorGridBox
+                        key={item.name}
+                        name={item.name}
+                        image={item.image}
+                    />
+                ))}
             </div>
         </div>
     );
