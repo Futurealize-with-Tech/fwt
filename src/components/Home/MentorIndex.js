@@ -2,7 +2,7 @@
 
 import styles from './home.module.scss';
 import MentorGridBox from '../Mentor/MentorGridBox';
-import { mentors } from '@/lib/mentors';
+import { mentors } from '@/lib/data/mentors';
 
 export default function MentorIndex() {
     return (
@@ -19,6 +19,7 @@ export default function MentorIndex() {
                         key={item.name}
                         name={item.name}
                         image={item.image}
+                        courses={item.course}
                     />
                 ))}
             </div>
