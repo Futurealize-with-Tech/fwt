@@ -20,6 +20,7 @@ export default function MentorIndex() {
                         name={item.name}
                         image={item.image}
                         courses={item.course}
+                        region={item.region}
                     />
                 ))}
             </div>

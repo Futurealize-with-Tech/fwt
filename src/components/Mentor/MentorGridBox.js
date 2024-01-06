@@ -2,15 +2,19 @@
 
 import styles from './mentor.module.scss';
 import CourseBox from '../Course/CourseBox';
+import RegionBox from '../Region/RegionBox';
 
 export default function MentorGridBox(props) {
-    const {name, image, courses} = props;
+    const {name, image, courses, region} = props;
 
     return (
         <div className={styles['container']}>
             <img src={image} alt={name} className={styles['icon-image']} />
             <div className={styles['under-box']}>
-                <p className={styles['name']}>{name}</p>
+                <div className={styles['name-box']}>
+                    <p className={styles['name']}>{name}</p>
+                    <RegionBox kind={region} />
+                </div>
                 <div className={styles['course-index-container']}>
                     <p className={styles['course-text']}>Course</p>
                     <div className={styles['course-index']}>
