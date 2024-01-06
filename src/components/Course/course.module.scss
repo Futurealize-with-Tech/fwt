@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.3rem;
+    border: 1px solid rgb(var(--primary-pink));
+    border-radius: 0.2rem;
+}
+
+.icon {
+    width: auto;
+    height: 0.9rem;
+}
+
+.text {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
