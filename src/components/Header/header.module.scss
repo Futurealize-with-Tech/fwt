@@ -47,7 +47,11 @@
 }
 
 .search-button {
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.2rem;
+    font-size: 1.3rem;
     font-weight: 500;
     color: rgb(var(--white));
     cursor: pointer;
