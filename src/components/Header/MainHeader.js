@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './header.module.scss';
 import TitleLogoImage from '@/public/app/fwt-title.png';
 import LogoImage from '@/public/app/fwt-logo-white.png';
+import { ImSearch } from "react-icons/im";
 
 export default function MainHeader() {
     return (
@@ -11,7 +12,10 @@ export default function MainHeader() {
             <div className={styles['container']}>
                 <Image src={TitleLogoImage} alt='Featureaize with Tech！' width={200} className={styles['title-logo-image']} />
                 <Image src={LogoImage} alt='Featureaize with Tech！' width={200} className={styles['logo-image']} />
-                <div className={styles['search-button']}>検索</div>
+                <div className={styles['search-button']}>
+                    <ImSearch />
+                    検索
+                </div>
             </div>
         </div>
     );
