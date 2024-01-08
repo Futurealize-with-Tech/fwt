@@ -19,14 +19,14 @@ export const MemberFormModal = ({ buttonLabel }) => {
   //   const getName = async () => {};
   // }, []);
   const toggleModal = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen);z®
   };
   return (
     <>
       <button onClick={toggleModal}>{buttonLabel}</button>
       {isOpen && (
         <div className={styles["overly"]}>
-          <form onSubmit={(e) => hanbleSubmit(e)} className={styles["content"]}>
+          <form onSubmit={handleSubmit} className={styles["content"]}>
             <div>
               <p>TO</p>
               <p>(メンター名)</p>
@@ -50,8 +50,11 @@ export const MemberFormModal = ({ buttonLabel }) => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
-              </div>
-              <button className={styles["toImgBtn"]}>画像デザインを選択</button>
+              </div>              {/* <input type="submit" value="送信" /> */}
+              <input
+                className={styles["toImgBtn"]}
+                value="画像デザインを選択"
+              />
               <div>
                 <div
                   onClick={() => setIsOpen(!isOpen)}
