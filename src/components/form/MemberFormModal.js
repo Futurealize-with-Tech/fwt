@@ -14,13 +14,12 @@ export const MemberFormModal = ({ buttonLabel }) => {
     await postMessage(memberName, message);
 
     setmemberName("");
-    setMessage("");
   };
   // useEffect(() => {
   //   const getName = async () => {};
   // }, []);
   const toggleModal = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen);z®
   };
   return (
     <>
@@ -51,8 +50,7 @@ export const MemberFormModal = ({ buttonLabel }) => {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
-              </div>
-              {/* <input type="submit" value="送信" /> */}
+              </div>              {/* <input type="submit" value="送信" /> */}
               <input
                 className={styles["toImgBtn"]}
                 value="画像デザインを選択"
