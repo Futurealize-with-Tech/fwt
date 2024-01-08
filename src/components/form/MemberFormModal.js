@@ -15,13 +15,12 @@ export const MemberFormModal = ({ buttonLabel }) => {
     await postMessage(memberName, message);
 
     setmemberName("");
-    setMessage("");
   };
   // useEffect(() => {
   //   const getName = async () => {};
   // }, []);
   const toggleModal = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen);z®
   };
   return (
     <>

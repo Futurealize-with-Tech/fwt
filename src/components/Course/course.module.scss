@@ -1,11 +1,20 @@
-.container {
+@mixin container($border) {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 0.3rem;
     padding: 0.2rem 0.3rem;
-    border: 1px solid rgb(var(--primary-pink));
+    border: 1px solid rgb($border);
     border-radius: 0.2rem;
+}
+
+.container {
+    @include container(var(--primary-pink));
+}
+
+.select-container {
+    @include container(var(--primary-gray));
+    cursor: pointer;
 }
 
 .icon {

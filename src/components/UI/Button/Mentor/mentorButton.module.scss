@@ -1,0 +1,25 @@
+// narrow
+
+.narrow-button-bg {
+    padding: 2px;
+    border-radius: 100vh;
+    background: rgb(var(--primary-pink));
+    background: linear-gradient(135deg, rgba(var(--primary-pink), 1) 0%, rgba(var(--primary-purple), 1) 100%);
+    cursor: pointer;
+}
+
+.narrow-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 100vh;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background-color: rgb(var(--white));
+    @media screen and (min-width: 531px) {
+        font-size: 0.7rem;
+    }
+}
