@@ -1,4 +1,4 @@
-export const returnRegion = (kind) => {
+export const returnRegion = (kind: string) => {
     switch (kind) {
         case 'tokyo':
             return {name: 'Tokyo', color: 'var(--primary-red)'};

@@ -3,8 +3,9 @@ import AndroidImage from '@/public/course/android.webp';
 import WebDImage from '@/public/course/webd.webp';
 import WebSImage from '@/public/course/webs.webp';
 import UnityImage from '@/public/course/unity.webp';
+import { CourseType } from '@/types/courseType';
 
-export const courses = [
+export const courses = <CourseType[]>[
     {name: 'all', nameText: 'All'},
     {name: 'iphone', nameText: 'iPhone', icon: IPhoneImage},
     {name: 'android', nameText: 'Android', icon: AndroidImage},

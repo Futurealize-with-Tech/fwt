@@ -1,6 +1,6 @@
 import { supabase } from "./supabase";
 
-export const postMessage = async (memberName, message) => {
+export const postMessage = async (memberName: string, message: string) => {
   await supabase
     .from("message")
     .insert({

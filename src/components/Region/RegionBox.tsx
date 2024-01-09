@@ -3,8 +3,7 @@
 import styles from './region.module.scss';
 import { returnRegion } from '@/lib/Function/returnRegion';
 
-export default function RegionBox(props) {
-    const {kind} = props;
+export default function RegionBox({kind}: {kind: string}) {
     const regionData = returnRegion(kind);
 
     return (
