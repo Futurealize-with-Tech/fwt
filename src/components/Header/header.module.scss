@@ -10,7 +10,8 @@
     justify-content: center;
     padding: 0.8rem 1.1rem;
     padding-bottom: 0;
-    background-color: rgb(var(--white));
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 60%, rgba(255,255,255,0) 100%);
     @media screen and (min-width: 701px) {
         padding: 1rem 2.2rem;
         padding-bottom: 0;
