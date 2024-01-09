@@ -9,10 +9,10 @@
 ## ⚒️ 使用した技術
 
 - Next.js 14.0.4
-- JavaScript
-- Sass?
+- TypeScript
+- Sass (スタイリング)
+- Supabase (バックエンド)
 - framer-motion（アニメーション）
-- Supabase
 
 ## 🌐 デプロイ
 フロントエンド：Vercel
@@ -45,11 +45,13 @@
     │   │       ├── Modal/
     │   │       └── Screen/
     │   │
-    │   └── lib/（配列や関数などの処理）
-    │       ├── Function/（関数）
-    │       ├── Image/（画像配列）
-    │       ├── Key/（ローカルストレージなどのkey）
-    │       └── Site/（メディアのURL）
+    │   ├── lib/（配列や関数などの処理）
+    │   │   ├── Function/（関数）
+    │   │   ├── Image/（画像配列）
+    │   │   ├── Key/（ローカルストレージなどのkey）
+    │   │   └── Site/（メディアのURL）
+    │   │
+    │   └── type/ (型定義)
     │
     ├── .eslintrc.json
     ├── .gitignore
@@ -107,3 +109,11 @@ RGB値で変数にしたいのは、下記のようにopacityを自由に調整�
     color: rgb(var(--primary-pink), 0.5);
 
 メインの色には`--primary-色`のように命名する。
+
+## 環境変数
+使っている環境変数は`Supabase`で使う以下の二つです。
+<br/>
+デプロイする際には、環境変数に以下のものを指定しないとプロジェクトが機能しません。
+
+- NEXT_PUBLIC_SUPABASE_URL
+- NEXT_PUBLIC_SUPABASE_ANON_KEY
