@@ -3,15 +3,14 @@
 import styles from "./mentor.module.scss";
 import CourseBox from "../Course/CourseBox";
 import RegionBox from "../Region/RegionBox";
-import { MemberFormModal } from "../form/MemberFormModal";
 import { MentorType } from "@/types/mentorType";
+import SendMessageButton from "../UI/Button/Mentor/SendMessageButton";
 
 export default function MentorGridBox({
   mentorData,
 }: {
   mentorData: MentorType,
 }) {
-
   return (
     <div className={styles["container"]}>
       <img src={mentorData.image} alt={mentorData.name} className={styles["icon-image"]} />
@@ -29,7 +28,7 @@ export default function MentorGridBox({
           </div>
         </div>
       </div>
-      <MemberFormModal />
+      <SendMessageButton id={mentorData.id} />
     </div>
   );
 }
