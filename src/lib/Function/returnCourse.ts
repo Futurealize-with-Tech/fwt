@@ -4,7 +4,7 @@ import WebDImage from '@/public/course/webd.webp';
 import WebSImage from '@/public/course/webs.webp';
 import UnityImage from '@/public/course/unity.webp';
 
-export const returnCourse = (kind) => {
+export const returnCourse = (kind: string) => {
     switch (kind) {
         case 'iphone':
             return {name: 'iPhone', icon: IPhoneImage};

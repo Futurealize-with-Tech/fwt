@@ -3,8 +3,11 @@
 import Image from 'next/image';
 import styles from './course.module.scss';
 
-export default function SelectCourseBox(props) {
-    const {icon, name, nameText, isSelect, setCourses} = props;
+export default function SelectCourseBox({
+    icon, name, nameText, isSelect, setCourses,
+}: {
+    icon?: string, name: string, nameText: string, isSelect: boolean, setCourses: () => void,
+}) {
 
     return (
         <div

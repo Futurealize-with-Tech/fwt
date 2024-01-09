@@ -1,12 +1,18 @@
 'use client'
 
-import { useState } from 'react';
+import React, { SetStateAction, useState } from 'react';
 import styles from './mentorButton.module.scss';
 import MentorIndexNarrowModal from '../../Modal/MentorIndexNarrowModal';
 import { FiPlusCircle } from "react-icons/fi";
 
-export default function NarrowMentorButton(props) {
-    const {selectCourses, setSelectCourses, selectRegion, setSelectRegion} = props;
+export default function NarrowMentorButton({
+    selectCourses, setSelectCourses, selectRegion, setSelectRegion
+}: {
+    selectCourses: string[],
+    setSelectCourses: React.Dispatch<SetStateAction<string[]>>,
+    selectRegion: string,
+    setSelectRegion: React.Dispatch<SetStateAction<string>>,
+}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleModal = () => {

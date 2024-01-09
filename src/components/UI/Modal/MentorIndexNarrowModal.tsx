@@ -1,14 +1,21 @@
 'use client'
 
-import { courses } from '@/lib/data/Course/courses';
+import React, { SetStateAction } from 'react';
 import styles from './modal.module.scss';
 import { RxCross2 } from 'react-icons/rx';
 import SelectCourseBox from '@/components/Course/SelectCourseBox';
+import { courses } from '@/lib/data/Course/courses';
 
-export default function MentorIndexNarrowModal(props) {
-    const {selectCourses, setSelectCourses, selectRegion, setSelectRegion, onClose} = props;
-
-    const handleSelect = (name) => {
+export default function MentorIndexNarrowModal({
+    selectCourses, setSelectCourses, selectRegion, setSelectRegion, onClose
+}: {
+    selectCourses: string[],
+    setSelectCourses: React.Dispatch<SetStateAction<string[]>>,
+    selectRegion: string,
+    setSelectRegion: React.Dispatch<SetStateAction<string>>,
+    onClose: () => void,
+}) {
+    const handleSelect = (name: string) => {
         if (name === 'all') {
             setSelectCourses([]);
         } else {
@@ -22,7 +29,7 @@ export default function MentorIndexNarrowModal(props) {
         };
     };
 
-    const isSelect = (name) => {
+    const isSelect = (name: string) => {
         if (selectCourses.length === 0 && name === 'all') {
             return true;
         } else if (selectCourses.includes(name)) {

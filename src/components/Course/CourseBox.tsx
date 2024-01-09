@@ -4,8 +4,7 @@ import Image from 'next/image';
 import styles from './course.module.scss';
 import { returnCourse } from '@/lib/Function/returnCourse';
 
-export default function CourseBox(props) {
-    const {kind} = props;
+export default function CourseBox({kind}: {kind: string}) {
     const courseData = returnCourse(kind);
 
     return (

@@ -4,12 +4,12 @@ import { supabase } from "../../../utils/supabase";
 import { postMessage } from "../../../utils/supabasePostFunctions";
 import { HiArrowCircleRight } from "react-icons/hi";
 
-export const MemberFormModal = ({ buttonLabel }) => {
+export const MemberFormModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [memberName, setmemberName] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     //追加
     await postMessage(memberName, message);
@@ -20,11 +20,11 @@ export const MemberFormModal = ({ buttonLabel }) => {
   //   const getName = async () => {};
   // }, []);
   const toggleModal = () => {
-    setIsOpen(!isOpen);z®
+    setIsOpen(!isOpen);
   };
   return (
     <>
-      <button onClick={toggleModal}>{buttonLabel}</button>
+      <button onClick={toggleModal}>メッセージを送る</button>
       {isOpen && (
         <div className={styles["overly"]}>
           <div className={styles["content"]}>
@@ -48,8 +48,8 @@ export const MemberFormModal = ({ buttonLabel }) => {
                   <div>MESSAGE</div>
                   <textarea
                     name="message"
-                    cols="30"
-                    rows="10"
+                    cols={30}
+                    rows={10}
                     className={styles["message-textform"]}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}

@@ -1,4 +1,6 @@
-export const returnMentorByCategory = (selectCategorys, mentor) => {
+import { MentorType } from "@/types/mentorType";
+
+export const returnMentorByCategory = (selectCategorys: string[], mentor: MentorType) => {
     if (selectCategorys.length === 0) {
         return true;
     } else {
@@ -12,7 +14,7 @@ export const returnMentorByCategory = (selectCategorys, mentor) => {
     };
 };
 
-export const returnMentorByRegion = (region, mentor) => {
+export const returnMentorByRegion = (region: string, mentor: MentorType) => {
     if (region === '' || mentor.region === region) {
         return true;
     } else {
