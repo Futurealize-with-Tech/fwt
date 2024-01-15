@@ -17,9 +17,13 @@ export default function MentorGridBox({
       <div className={styles["under-box"]}>
         <div className={styles["name-box"]}>
           <p className={styles["name"]}>{mentorData.name}</p>
-          <RegionBox kind={mentorData.region} />
         </div>
         <div className={styles["course-index-container"]}>
+          <div className={styles["region-index"]}>
+          {mentorData.region.map((item) => (
+            <RegionBox kind={item} key={item} />
+          ))}
+          </div>
           <p className={styles["course-text"]}>Course</p>
           <div className={styles["course-index"]}>
             {mentorData.course.map((item) => (
