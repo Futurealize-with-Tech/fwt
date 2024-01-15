@@ -1,3 +1,12 @@
+@mixin index {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+}
+
 .container {
     width: 100%;
     max-width: 300px;
@@ -49,17 +58,17 @@
 }
 
 .course-index {
-    width: 100%;
+    @include index();
     min-height: 45px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    gap: 0.2rem;
 }
 
 .course-text {
     font-size: 0.7rem;
     font-weight: 500;
     color: rgb(var(--primary-gray));
+}
+
+.region-index {
+    @include index();
+    margin-bottom: 0.2rem;
 }

@@ -14,10 +14,16 @@ export const returnMentorByCategory = (selectCategorys: string[], mentor: Mentor
     };
 };
 
-export const returnMentorByRegion = (region: string, mentor: MentorType) => {
-    if (region === '' || mentor.region === region) {
+export const returnMentorByRegion = (selectRegions: string[], mentor: MentorType) => {
+    if (selectRegions.length === 0) {
         return true;
     } else {
-        return false;
+        for (let i = 0;i < selectRegions.length;i++) {
+            if (!mentor.course.includes(selectRegions[i])) {
+                return false;
+            };
+        };
+
+        return true;
     };
 };

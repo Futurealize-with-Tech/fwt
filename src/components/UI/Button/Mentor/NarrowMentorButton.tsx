@@ -6,12 +6,12 @@ import MentorIndexNarrowModal from '../../Modal/MentorIndexNarrowModal';
 import { FiPlusCircle } from "react-icons/fi";
 
 export default function NarrowMentorButton({
-    selectCourses, setSelectCourses, selectRegion, setSelectRegion
+    selectCourses, setSelectCourses, selectRegions, setSelectRegions
 }: {
     selectCourses: string[],
     setSelectCourses: React.Dispatch<SetStateAction<string[]>>,
-    selectRegion: string,
-    setSelectRegion: React.Dispatch<SetStateAction<string>>,
+    selectRegions: string[],
+    setSelectRegions: React.Dispatch<SetStateAction<string[]>>,
 }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -31,8 +31,8 @@ export default function NarrowMentorButton({
             <MentorIndexNarrowModal
                 selectCourses={selectCourses}
                 setSelectCourses={setSelectCourses}
-                selectRegion={selectRegion}
-                setSelectRegion={setSelectRegion}
+                selectRegions={selectRegions}
+                setSelectRegions={setSelectRegions}
                 onClose={handleModal}
             />
         )}

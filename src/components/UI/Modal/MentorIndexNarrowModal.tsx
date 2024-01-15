@@ -7,12 +7,12 @@ import SelectCourseBox from '@/components/Course/SelectCourseBox';
 import { courses } from '@/lib/data/Course/courses';
 
 export default function MentorIndexNarrowModal({
-    selectCourses, setSelectCourses, selectRegion, setSelectRegion, onClose
+    selectCourses, setSelectCourses, selectRegions, setSelectRegions, onClose
 }: {
     selectCourses: string[],
     setSelectCourses: React.Dispatch<SetStateAction<string[]>>,
-    selectRegion: string,
-    setSelectRegion: React.Dispatch<SetStateAction<string>>,
+    selectRegions: string[],
+    setSelectRegions: React.Dispatch<SetStateAction<string[]>>,
     onClose: () => void,
 }) {
     const handleSelect = (name: string) => {

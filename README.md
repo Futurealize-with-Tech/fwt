@@ -12,6 +12,7 @@
 - TypeScript
 - Sass (スタイリング)
 - Supabase (バックエンド)
+- Prisma (ORM)
 - framer-motion（アニメーション）
 
 ## 🌐 デプロイ
