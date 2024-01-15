@@ -3,5 +3,5 @@ export type MentorType = {
     name: string,
     image: string,
     course: string[],
-    region: string,
+    region: string[],
 };

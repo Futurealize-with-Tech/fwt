@@ -6,13 +6,14 @@ import MentorGridBox from '../Mentor/MentorGridBox';
 import { mentors } from '@/lib/data/mentors';
 import NarrowMentorButton from '../UI/Button/Mentor/NarrowMentorButton';
 import { returnMentorByCategory, returnMentorByRegion } from '@/lib/Function/Mentor/returnMentor';
+import { MentorType } from '@/types/mentorType';
 
 export default function MentorIndex() {
-    const [selectRegion, setSelectRegion] = useState<string>('');
+    const [selectRegions, setSelectRegions] = useState<string[]>([]);
     const [selectCourses, setSelectCourses] = useState<string[]>([]);
 
-    const mentorIndex = mentors.filter((item) => {
-        if (returnMentorByCategory(selectCourses, item) && returnMentorByRegion(selectRegion, item)) {
+    const mentorIndex: MentorType[] = mentors.filter((item) => {
+        if (returnMentorByCategory(selectCourses, item) && returnMentorByRegion(selectRegions, item)) {
             return item;
         } else {
             return;
@@ -31,8 +32,8 @@ export default function MentorIndex() {
                 <NarrowMentorButton
                     selectCourses={selectCourses}
                     setSelectCourses={setSelectCourses}
-                    selectRegion={selectRegion}
-                    setSelectRegion={setSelectRegion}
+                    selectRegions={selectRegions}
+                    setSelectRegions={setSelectRegions}
                 />
             </div>
             <div className={styles['mentor-grid-container']}>
