@@ -9,7 +9,7 @@ export default function RegionBox({kind}: {kind: string}) {
     return (
         <div className={styles['container']} style={{backgroundColor: `rgba(${regionData.color}, 0.3)`}}>
             <div className={styles['circle']} style={{backgroundColor: `rgb(${regionData.color})`}} />
-            <p className={styles['text']}>{regionData.name}</p>
+            <p className={styles['text']}>{regionData.nameText}</p>
         </div>
     );
 }
