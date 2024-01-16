@@ -19,7 +19,7 @@ export const returnMentorByRegion = (selectRegions: string[], mentor: MentorType
         return true;
     } else {
         for (let i = 0;i < selectRegions.length;i++) {
-            if (!mentor.course.includes(selectRegions[i])) {
+            if (!mentor.region.includes(selectRegions[i])) {
                 return false;
             };
         };
