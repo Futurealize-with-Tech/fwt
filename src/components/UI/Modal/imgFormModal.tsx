@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
 
-export const ImageFormModal = ({ onClose }: { onClose: () => {} }) => {
+export const ImageFormModal = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div className={styles["overly"]}>
@@ -25,17 +25,17 @@ export const ImageFormModal = ({ onClose }: { onClose: () => {} }) => {
             >
               <SwiperSlide className={styles["img-Btn"]}>
                 <button>
-                  <Image src={Image1} width={200} height={200} />
+                  <Image src={Image1} alt='card' width={200} height={200} />
                 </button>
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
                 <button>
-                  <Image src={Image1} width={200} height={200} />
+                  <Image src={Image1} alt='card' width={200} height={200} />
                 </button>
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
                 <button>
-                  <Image src={Image1} width={200} height={200} />
+                  <Image src={Image1} alt='card' width={200} height={200} />
                 </button>
               </SwiperSlide>
             </Swiper>
