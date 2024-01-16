@@ -183,3 +183,19 @@
     // padding: 3px;
 }
 
+.finish-button {
+    width: 100%;
+    max-width: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0.4rem;
+    padding: 0.3rem 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgb(var(--white));
+    background: rgb(var(--primary-purple));
+    background: linear-gradient(135deg, rgba(var(--primary-pink), 1) 0%, rgba(var(--primary-purple), 1) 100%);
+    border-radius: 100vh;
+    cursor: pointer;
+}
