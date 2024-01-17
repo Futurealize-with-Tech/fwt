@@ -17,12 +17,15 @@ export const MemberFormModal = ({
   const [memberName, setmemberName] = useState("");
   const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e: { preventDefault: () => void }) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
+
+    if (memberName === "" || message === "") return;
     //追加
     await postMessage(memberName, message, id);
 
     setmemberName("");
+    setMessage("");
   };
 
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
@@ -68,13 +71,19 @@ export const MemberFormModal = ({
               <div className={styles["submitBtn"]}>
                 <div>
                   <input
+                    type="submit"
                     className={styles["toImgBtn"]}
                     value="画像デザインを選択"
-                    onClick={handleImgModal}
                   />
-                  {/* <div onClick={handleImgModal}>ボタン</div> */}
+                  <div onClick={handleImgModal}>ボタン</div>
+
                   {isImgModalOpen && (
-                    <ImageFormModal onClose={handleImgModal} />
+                    <ImageFormModal
+                      id={id}
+                      memberName={memberName}
+                      message={message}
+                      onClose={() => handleImgModal}
+                    />
                   )}
                 </div>
               </div>

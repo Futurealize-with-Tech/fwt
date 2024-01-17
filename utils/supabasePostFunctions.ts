@@ -8,7 +8,7 @@ export const postMessage = async (
   await supabase.from("Message").insert({
     memberName: memberName,
     body: message,
-    mentorId: id,
-    cardDesign: "1",
+    mentorId: 1,
+    cardDesign: 1,
   });
 };

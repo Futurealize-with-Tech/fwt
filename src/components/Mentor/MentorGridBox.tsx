@@ -5,15 +5,20 @@ import CourseBox from "../Course/CourseBox";
 import RegionBox from "../Region/RegionBox";
 import { MentorType } from "@/types/mentorType";
 import SendMessageButton from "../UI/Button/Mentor/SendMessageButton";
+import { getAllMentorData } from "../../../utils/supabaseGetFunctions";
 
 export default function MentorGridBox({
   mentorData,
 }: {
-  mentorData: MentorType,
+  mentorData: MentorType;
 }) {
   return (
     <div className={styles["container"]}>
-      <img src={mentorData.image} alt={mentorData.name} className={styles["icon-image"]} />
+      <img
+        src={mentorData.image}
+        alt={mentorData.name}
+        className={styles["icon-image"]}
+      />
       <div className={styles["under-box"]}>
         <div className={styles["name-box"]}>
           <p className={styles["name"]}>{mentorData.name}</p>
