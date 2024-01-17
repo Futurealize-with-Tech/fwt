@@ -24,6 +24,7 @@ export const ImageFormModal = ({
   const handleSubmit = (e: any) => {
     e.preventDefault();
   };
+
   return (
     <>
       <div className={styles["overly"]}>
@@ -38,17 +39,17 @@ export const ImageFormModal = ({
             >
               <SwiperSlide className={styles["img-Btn"]}>
                 <button>
-                  <Image src={Image1} width={200} height={200} />
+                  <Image src={Image1} alt='card' width={200} height={200} />
                 </button>
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
                 <button>
-                  <Image src={Image1} width={200} height={200} />
+                  <Image src={Image1} alt='card' width={200} height={200} />
                 </button>
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
                 <button>
-                  <Image src={Image1} width={200} height={200} />
+                  <Image src={Image1} alt='card' width={200} height={200} />
                 </button>
               </SwiperSlide>
             </Swiper>
