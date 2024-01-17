@@ -10,7 +10,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
 
-export const ImageFormModal = ({ onClose }: { onClose: () => {} }) => {
+export const ImageFormModal = ({
+  id,
+  memberName,
+  message,
+  onClose,
+}: {
+  id: number;
+  memberName: string;
+  message: string;
+  onClose: () => void;
+}) => {
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+  };
   return (
     <>
       <div className={styles["overly"]}>
@@ -40,7 +53,7 @@ export const ImageFormModal = ({ onClose }: { onClose: () => {} }) => {
               </SwiperSlide>
             </Swiper>
             <input
-              type={"submit"}
+              type="submit"
               value="これにする"
               className={styles["submitBtn"]}
             />
