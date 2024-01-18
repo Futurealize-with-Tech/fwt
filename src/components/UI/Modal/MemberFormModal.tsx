@@ -2,7 +2,6 @@
 
 import styles from "./modal.module.scss";
 import React, { useState } from "react";
-import { postMessage } from "../../../../utils/supabasePostFunctions";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 import { ImageFormModal } from "./imgFormModal";
@@ -22,7 +21,6 @@ export const MemberFormModal = ({
 
     if (memberName === "" || message === "") return;
     //追加
-    await postMessage(memberName, message, id);
 
     setmemberName("");
     setMessage("");
