@@ -3,3 +3,8 @@ export type RegionType = {
     nameText: string,
     color: string,
 };
+
+export type MentorRegionType = {
+    id: number,
+    name: string,
+};
