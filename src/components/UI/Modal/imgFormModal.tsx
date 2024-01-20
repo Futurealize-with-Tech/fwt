@@ -25,6 +25,9 @@ export const ImageFormModal = ({
     e.preventDefault();
   };
 
+  //追加
+  const addMessage = async (messageData: any) => {};
+
   return (
     <>
       <div className={styles["overly"]}>
@@ -38,18 +41,18 @@ export const ImageFormModal = ({
               pagination={{ clickable: true }}
             >
               <SwiperSlide className={styles["img-Btn"]}>
-                <button>
-                  <Image src={Image1} alt='card' width={200} height={200} />
+                <button type="button" value="1">
+                  <Image src={Image1} alt="card" width={200} height={200} />
                 </button>
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
-                <button>
-                  <Image src={Image1} alt='card' width={200} height={200} />
+                <button type="button" value="2">
+                  <Image src={Image1} alt="card" width={200} height={200} />
                 </button>
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
-                <button>
-                  <Image src={Image1} alt='card' width={200} height={200} />
+                <button type="button" value="3">
+                  <Image src={Image1} alt="card" width={200} height={200} />
                 </button>
               </SwiperSlide>
             </Swiper>
