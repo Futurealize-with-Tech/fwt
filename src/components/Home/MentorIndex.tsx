@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './home.module.scss';
 import MentorGridBox from '../Mentor/MentorGridBox';
 import { mentors } from '@/lib/data/mentors';
@@ -8,11 +8,15 @@ import NarrowMentorButton from '../UI/Button/Mentor/NarrowMentorButton';
 import { returnMentorByCategory, returnMentorByRegion } from '@/lib/Function/Mentor/returnMentor';
 import { MentorType } from '@/types/mentorType';
 
-export default function MentorIndex() {
+export default function MentorIndex({
+    mentorsData,
+}: {
+    mentorsData: MentorType[],
+}) {
     const [selectRegions, setSelectRegions] = useState<string[]>([]);
     const [selectCourses, setSelectCourses] = useState<string[]>([]);
 
-    const mentorIndex: MentorType[] = mentors.filter((item) => {
+    const mentorIndex = mentorsData.filter((item) => {
         if (returnMentorByCategory(selectCourses, item) && returnMentorByRegion(selectRegions, item)) {
             return item;
         } else {
