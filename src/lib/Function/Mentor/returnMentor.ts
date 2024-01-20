@@ -5,7 +5,7 @@ export const returnMentorByCategory = (selectCategorys: string[], mentor: Mentor
         return true;
     } else {
         for (let i = 0;i < selectCategorys.length;i++) {
-            if (!mentor.course.includes(selectCategorys[i])) {
+            if (!mentor.courses.some(course => course.name === selectCategorys[i])) {
                 return false;
             };
         };
@@ -19,7 +19,7 @@ export const returnMentorByRegion = (selectRegions: string[], mentor: MentorType
         return true;
     } else {
         for (let i = 0;i < selectRegions.length;i++) {
-            if (!mentor.region.includes(selectRegions[i])) {
+            if (!mentor.regions.some(region => region.name === selectRegions[i])) {
                 return false;
             };
         };
