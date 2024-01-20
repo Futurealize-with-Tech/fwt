@@ -4,7 +4,12 @@ import { prisma, prismaConnect } from "@/lib/prisma/prisma";
 export const GET = async (req: Request, res: NextResponse) => {
     try {
         await prismaConnect();
-        const mentors = await prisma.mentor.findMany();
+        const mentors = await prisma.mentor.findMany({
+            include: {
+                regions: true,
+                courses: true,
+            },
+        });
 
         return NextResponse.json({mentors}, {status: 200});
     } catch (e) {
