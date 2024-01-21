@@ -22,7 +22,6 @@ export const MemberFormModal = ({
 
     if (memberName === "" || message === "") return;
     //追加
-
     setmemberName("");
     setMessage("");
   };
