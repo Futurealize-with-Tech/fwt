@@ -3,3 +3,8 @@ export type CourseType = {
     nameText: string,
     icon?: string,
 };
+
+export type MentorCourseType = {
+    id: number,
+    name: string,
+};
