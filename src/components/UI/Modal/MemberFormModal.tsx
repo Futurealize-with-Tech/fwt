@@ -4,7 +4,6 @@ import styles from "./modal.module.scss";
 import React, { useState } from "react";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
-import { ImageFormModal } from "./imgFormModal";
 import ToImageButton from "../Button/Mentor/ToImgButton";
 
 export const MemberFormModal = ({
@@ -22,16 +21,10 @@ export const MemberFormModal = ({
 
     if (memberName === "" || message === "") return;
     //追加
-
     setmemberName("");
     setMessage("");
   };
 
-  const [isImgModalOpen, setIsImgModalOpen] = useState(false);
-
-  const handleImgModal = () => {
-    setIsImgModalOpen(!isImgModalOpen);
-  };
   return (
     <>
       <div className={styles["modal-form"]}>

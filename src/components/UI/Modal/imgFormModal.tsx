@@ -4,17 +4,16 @@ import styles from "./imgFormModal.module.scss";
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Image1 from "@/public/img/image1.jpg";
+import Image2 from "@/public/img/image2.jpg"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
-import { cp } from "fs";
-
+import { RxCross2 } from "react-icons/rx";
 
 const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
   try {
-
     const res = await fetch(`/api/v1/form`, {
       method: "POST",
       body: JSON.stringify({memberName, body, cardDesign, mentorId}),
@@ -49,6 +48,9 @@ export const ImageFormModal = ({
       <div className={styles["overly"]}>
         <div className={styles["content"]}>
           <div className={styles["title-label"]}>画像デザインを選択</div>
+          <div className={styles["close-button"]} onClick={onClose}>
+            <RxCross2 />
+          </div>
           <div className={styles["contaner"]}>
             <Swiper
               className={styles["img-container"]}
@@ -62,14 +64,16 @@ export const ImageFormModal = ({
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
                 <input type="button" value='2'/>
-                  <Image src={Image1} alt="card" width={200} height={200} />
+                  <Image src={Image2} alt="card" width={200} height={200} />
               </SwiperSlide>
               <SwiperSlide className={styles["img-Btn"]}>
                 <input type="button" value=''/>
                   <Image src={Image1} alt="card" width={200} height={200} />
               </SwiperSlide>
             </Swiper>
-            <button onClick={handleClick} className={styles["submitBtn"]}>これにする</button>
+            <div onClick={onClose}>
+                <button onClick={handleClick} className={styles["submitBtn"]}>これにする</button>
+            </div>
           </div>
         </div>
       </div>
