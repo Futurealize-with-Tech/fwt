@@ -14,7 +14,7 @@ export const POST = async (req: Request, res: NextResponse) => {
         mentorId,
       },
     });
-    return NextResponse.json({ messageData }, { status: 200 });
+    return NextResponse.json({ messageData }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ message: "失敗", error }, { status: 500 });
   } finally {

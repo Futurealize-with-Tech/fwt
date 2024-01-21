@@ -5,6 +5,7 @@ import React, { useState } from "react";
 import { HiArrowCircleRight } from "react-icons/hi";
 import { RxCross2 } from "react-icons/rx";
 import { ImageFormModal } from "./imgFormModal";
+import ToImageButton from "../Button/Mentor/ToImgButton";
 
 export const MemberFormModal = ({
   id,
@@ -68,21 +69,9 @@ export const MemberFormModal = ({
               </div>
               <div className={styles["submitBtn"]}>
                 <div>
-                  <input
-                    type="submit"
-                    className={styles["toImgBtn"]}
-                    value="画像デザインを選択"
-                  />
-                  <div onClick={handleImgModal}>ボタン</div>
-
-                  {isImgModalOpen && (
-                    <ImageFormModal
-                      id={id}
-                      memberName={memberName}
-                      message={message}
-                      onClose={() => handleImgModal}
-                    />
-                  )}
+                  <div className={styles["toImgBtn"]}>
+                  <ToImageButton id={id} memberName={memberName} message={message} />
+                  </div>
                 </div>
               </div>
             </div>
