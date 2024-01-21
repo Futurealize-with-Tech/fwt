@@ -59,7 +59,7 @@
 
 .course-index {
     @include index();
-    min-height: 45px;
+    min-height: 2.6rem;
 }
 
 .course-text {
@@ -70,5 +70,6 @@
 
 .region-index {
     @include index();
+    min-height: 1.3rem;
     margin-bottom: 0.2rem;
 }
