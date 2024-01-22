@@ -9,12 +9,10 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css";
-import { cp } from "fs";
 
 
 const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
   try {
-
     const res = await fetch(`/api/v1/form`, {
       method: "POST",
       body: JSON.stringify({memberName, body, cardDesign, mentorId}),
