@@ -10,7 +10,6 @@ import DesignerImage from '@/public/course/designer.png';
 import MediaArtImage from '@/public/course/media-art-icon.png';
 import DTMImage from '@/public/course/dtm-icon.png';
 import MikuImage from '@/public/course/miku-icon.png';
-import AIImage from '@/public/course/ai-icon.png';
 import { CourseType } from '@/types/courseType';
 
 export const courses = <CourseType[]>[
@@ -27,5 +26,4 @@ export const courses = <CourseType[]>[
     {name: 'mediaart', nameText: 'メディアアート', icon: MediaArtImage},
     {name: 'dtm', nameText: 'DTM', icon: DTMImage},
     {name: 'miku', nameText: '初音ミク', icon: MikuImage},
-    {name: 'ai', nameText: 'AI', icon: AIImage},
 ];

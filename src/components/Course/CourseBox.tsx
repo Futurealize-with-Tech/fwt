@@ -9,8 +9,8 @@ export default function CourseBox({kind}: {kind: string}) {
 
     return (
         <div className={styles['container']}>
-            <Image src={courseData.icon!} alt={courseData.nameText} className={styles['icon']} width={50} />
-            <p className={styles['text']}>{courseData.nameText}</p>
+            <Image src={courseData.icon} alt={courseData.name} className={styles['icon']} width={50} />
+            <p className={styles['text']}>{courseData.name}</p>
         </div>
     );
 }
