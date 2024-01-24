@@ -24,25 +24,27 @@ export default function MentorGridBox({
       ): (
         <Image src={MentorDefaultImage} alt={mentorData.name} className={styles['icon-image']} width={200} />
       )}
-      <div className={styles["under-box"]}>
-        <div className={styles["name-box"]}>
-          <p className={styles["name"]}>{mentorData.name}</p>
-        </div>
-        <div className={styles["course-index-container"]}>
-          <div className={styles["region-index"]}>
-          {mentorData.regions.map((item) => (
-            <RegionBox kind={item.name} key={item.id} />
-          ))}
+      <div className={styles['under-container']}>
+        <div className={styles["under-box"]}>
+          <div className={styles["name-box"]}>
+            <p className={styles["name"]}>{mentorData.name}</p>
           </div>
-          <p className={styles["course-text"]}>Course</p>
-          <div className={styles["course-index"]}>
-            {mentorData.courses.map((item) => (
-              <CourseBox kind={item.name} key={item.id} />
+          <div className={styles["course-index-container"]}>
+            <div className={styles["region-index"]}>
+            {mentorData.regions.map((item) => (
+              <RegionBox kind={item.name} key={item.id} />
             ))}
+            </div>
+            <p className={styles["course-text"]}>Course</p>
+            <div className={styles["course-index"]}>
+              {mentorData.courses.map((item) => (
+                <CourseBox kind={item.name} key={item.id} />
+              ))}
+            </div>
           </div>
         </div>
+        <SendMessageButton id={mentorData.id} />
       </div>
-      <SendMessageButton id={mentorData.id} />
     </div>
   );
 }
