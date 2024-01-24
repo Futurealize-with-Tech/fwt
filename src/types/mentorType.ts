@@ -1,7 +1,10 @@
+import { MentorCourseType } from "./courseType";
+import { MentorRegionType } from "./regionType";
+
 export type MentorType = {
     id: number,
     name: string,
-    image: string,
-    course: string[],
-    region: string[],
+    imageUrl?: string,
+    courses: MentorCourseType[],
+    regions: MentorRegionType[],
 };
