@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import styles from './mentorButton.module.scss';
-import { MemberFormModal } from '../../Modal/MemberFormModal';
+import MemberFormModal from '../../Modal/MemberFormModal';
 
 export default function SendMessageButton({id}: {id: number}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
