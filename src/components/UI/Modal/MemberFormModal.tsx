@@ -2,21 +2,37 @@
 
 import { SetStateAction, useRef, useState } from "react";
 import styles from "./modal.module.scss";
+import Image from "next/image";
+import ImageFormModal from "./ImageFormModal";
+import { CardDesignType } from "@/types/cardDesignType";
+import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
 import { CgAdd, CgSelectO } from "react-icons/cg";
-import { CardDesignType } from "@/types/cardDesignType";
-import { ImageFormModal } from "./imgFormModal";
 
-export const MemberFormModal = ({
+const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/form`, {
+      method: "POST",
+      body: JSON.stringify({memberName, body, cardDesign, mentorId}),
+      headers: {
+        "Content-type": "application/json",
+      }
+    });
+    return res.json();
+  } catch (error) {
+  }
+};
+
+export default function MemberFormModal({
   id,
   onClose,
 }: {
   id: number;
   onClose: () => void;
-}) => {
+}) {
   const [memberName, setMemberName] = useState("");
   const [message, setMessage] = useState("");
-  const [cardDesign, setCardDesign] = useState<CardDesignType>();
+  const [cardDesign, setCardDesign] = useState<CardDesignType | null>(null);
   const [height, setHeight] = useState('auto');
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
   const textareaRef = useRef<any>(null);
@@ -33,13 +49,22 @@ export const MemberFormModal = ({
     setIsImgModalOpen(!isImgModalOpen);
   };
 
+  const handleCardDesign = (cardDesign: CardDesignType) => {
+    setCardDesign(cardDesign);
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (memberName === "" || message === "") return;
-    //追加
-    setMemberName("");
-    setMessage("");
+    if (memberName !== "" && message !== "" && cardDesign) {
+      try {
+        await postMessage(memberName, message, cardDesign.id, id);
+        toast.success("メッセージを送信しました");
+        onClose();
+      } catch (e) {
+        toast.error("メッセージの送信に失敗しました");
+      }
+    };
   };
 
   return (
@@ -88,10 +113,11 @@ export const MemberFormModal = ({
               <div className={styles['input-top-title']}>Card Design</div>
             </div>
             <div className={styles['img-select-container']}>
-            {cardDesign ? (
+            {cardDesign !== null ? (
               <>
               <div className={styles['img-info-box']}>
-
+                <Image src={cardDesign.image} alt={cardDesign.name} width={50} className={styles['img-info-image']} />
+                <p className={styles['img-info-name']}>{cardDesign.name}</p>
               </div>
               <div className={styles['img-select-icon']} onClick={handleImgModal}>
                 <CgSelectO />
@@ -112,7 +138,7 @@ export const MemberFormModal = ({
               メッセージを送信
             </div>
           ) : (
-            <div className={styles['send-button']}>
+            <div className={styles['send-button']} onClick={handleSubmit}>
               メッセージを送信
             </div>
           )}
@@ -125,7 +151,9 @@ export const MemberFormModal = ({
         id={id}
         memberName={memberName}
         message={message}
+        designNumber={cardDesign ? cardDesign.id : 0}
         onClose={handleImgModal}
+        setCardDesign={handleCardDesign}
       />
     )}
     </>

@@ -1,41 +1,34 @@
 "use client";
 
+import { useState } from "react";
 import styles from "./imgFormModal.module.scss";
 import modalStyles from "./modal.module.scss";
-import { useState, useRef } from "react";
-import { IoArrowBackOutline } from "react-icons/io5";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { cardDesigns } from "@/lib/data/CardDesign/cardDesigns";
+import { CardDesignType } from "@/types/cardDesignType";
+import { IoArrowBackOutline } from "react-icons/io5";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
-const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
-  try {
-    const res = await fetch(`/api/v1/form`, {
-      method: "POST",
-      body: JSON.stringify({memberName, body, cardDesign, mentorId}),
-      headers: {
-        "Content-type": "application/json",
-      }
-    });
-    return res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-export const ImageFormModal = ({
+export default function ImageFormModal({
   id,
   memberName,
   message,
+  designNumber,
   onClose,
+  setCardDesign,
 }: {
-  id: number;
-  memberName: string;
-  message: string;
-  onClose: () => void;
-}) => {
-  const [[design, direction], setDesign] = useState([0, 0]);
+  id: number,
+  memberName: string,
+  message: string,
+  designNumber?: number,
+  onClose: () => void,
+  setCardDesign: (cardDesign: CardDesignType) => void,
+}) {
+  const [[design, direction], setDesign] = useState([
+    designNumber ? designNumber : 0,
+    0
+  ]);
 
   const animateImage = {
     enter: (direction: number) => {
@@ -65,9 +58,9 @@ export const ImageFormModal = ({
     setDesign([design + newDirection, newDirection]);
   };
 
-  const handleClick = (e: any) => {
-    e.preventDefault();
-    postMessage(memberName, message, 1, id);
+  const handleSelect = () => {
+    setCardDesign(cardDesigns[design]);
+    onClose();
   };
 
   return (
@@ -122,7 +115,7 @@ export const ImageFormModal = ({
           );
         })}
         </div>
-        <div className={modalStyles['send-button']}>
+        <div className={modalStyles['send-button']} onClick={handleSelect}>
           選択する
         </div>
       </div>
