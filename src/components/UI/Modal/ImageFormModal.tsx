@@ -11,16 +11,10 @@ import { IoArrowBackOutline } from "react-icons/io5";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function ImageFormModal({
-  id,
-  memberName,
-  message,
   designNumber,
   onClose,
   setCardDesign,
 }: {
-  id: number,
-  memberName: string,
-  message: string,
   designNumber?: number,
   onClose: () => void,
   setCardDesign: (cardDesign: CardDesignType) => void,
