@@ -1,0 +1,58 @@
+@mixin circle($color) {
+    r: 12px;
+    cx: 50%;
+    cy: 50%;
+    stroke: rgb($color);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+}
+
+@mixin svg-width {
+    width: 26px;
+    height: 26px;
+}
+
+.container {
+    @include svg-width();
+    position: relative;
+}
+
+.svg {
+    @include svg-width();
+    rotate: 270deg;
+}
+
+.circle-top {
+    @include circle(var(--primary-pink));
+}
+
+.circle-under {
+    @include circle(var(--primary-pale-pink));
+}
+
+.warning-circle {
+    @include circle(var(--yellow));
+}
+
+.invalid-circle {
+    @include circle(var(--red));
+}
+
+.count-box {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.count {
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+}

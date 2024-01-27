@@ -4,6 +4,7 @@ import { SetStateAction, useRef, useState } from "react";
 import styles from "./modal.module.scss";
 import Image from "next/image";
 import ImageFormModal from "./ImageFormModal";
+import TextLengthGauge from '@/components/UI/Form/TextLengthGauge';
 import { CardDesignType } from "@/types/cardDesignType";
 import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
@@ -82,12 +83,14 @@ export default function MemberFormModal({
           <div className={styles['input-container']}>
             <div className={styles['input-top-box']}>
               <p className={styles['input-top-title']}>From</p>
+              <TextLengthGauge textLength={memberName.length} maxLength={30} />
             </div>
             <div className={styles["input-box"]}>
               <input
                 type="text"
                 className={styles["input"]}
                 placeholder="メンバー名を入力"
+                maxLength={50}
                 value={memberName}
                 onChange={(e) => setMemberName(e.target.value)}
               />
@@ -96,11 +99,13 @@ export default function MemberFormModal({
           <div className={styles['input-container']}>
             <div className={styles['input-top-box']}>
               <p className={styles['input-top-title']}>Message</p>
+              <TextLengthGauge textLength={message.length} maxLength={100} />
             </div>
             <div className={styles["textarea-box"]}>
               <textarea
                 className={styles["textarea"]}
                 placeholder="メッセージを800文字以内で入力"
+                maxLength={1500}
                 value={message}
                 onChange={handleMessageChange}
                 ref={textareaRef}
