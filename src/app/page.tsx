@@ -1,5 +1,6 @@
 import styles from './page.module.scss';
 import MentorIndex from '@/components/Home/MentorIndex';
+import MentorsDataProvider from '@/middleware/MentorsDataProvider';
 import { MentorType } from '@/types/mentorType';
 
 async function getMentorsData() {
@@ -14,7 +15,9 @@ export default async function Home() {
 
     return (
         <div className={styles['container']}>
-            <MentorIndex mentorsData={mentorsData} />
+            <MentorsDataProvider mentors={mentorsData}>
+                <MentorIndex mentorsData={mentorsData} />
+            </MentorsDataProvider>
         </div>
     )
 }
