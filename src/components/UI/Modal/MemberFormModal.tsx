@@ -1,6 +1,6 @@
 "use client";
 
-import { SetStateAction, useRef, useState } from "react";
+import { SetStateAction, useContext, useRef, useState } from "react";
 import styles from "./modal.module.scss";
 import Image from "next/image";
 import ImageFormModal from "./ImageFormModal";
@@ -9,6 +9,7 @@ import { CardDesignType } from "@/types/cardDesignType";
 import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
 import { CgAdd, CgSelectO } from "react-icons/cg";
+import { MentorsDataContext } from "@/middleware/MentorsDataProvider";
 
 const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
   try {
@@ -37,6 +38,9 @@ export default function MemberFormModal({
   const [height, setHeight] = useState('auto');
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
   const textareaRef = useRef<any>(null);
+
+  const mentorsData = useContext(MentorsDataContext);
+  const mentorData = mentorsData.find((item) => item.id === id);
 
   const handleMessageChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setMessage(e.target.value);
@@ -78,7 +82,7 @@ export default function MemberFormModal({
         <div className={styles["close-button"]} onClick={onClose}>
           <RxCross2 />
         </div>
-        <p className={styles['modal-title']}><span>メンター</span>へ</p>
+        <p className={styles['modal-title']}><span>{mentorData?.name}</span>へ</p>
         <div className={styles['index-container']}>
           <div className={styles['input-container']}>
             <div className={styles['input-top-box']}>
@@ -153,9 +157,6 @@ export default function MemberFormModal({
     <div className={styles["modal-bg-black"]} onClick={onClose} />
     {isImgModalOpen && (
       <ImageFormModal
-        id={id}
-        memberName={memberName}
-        message={message}
         designNumber={cardDesign ? cardDesign.id : 0}
         onClose={handleImgModal}
         setCardDesign={handleCardDesign}
