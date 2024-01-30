@@ -10,6 +10,10 @@ import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
 import { CgAdd, CgSelectO } from "react-icons/cg";
 import { MentorsDataContext } from "@/middleware/MentorsDataProvider";
+import CloseCheckModal from "./CloseCheckModal";
+import MessageDraftModal from "./MessageDraftModal";
+import { createDraftMessage } from "@/lib/Function/Message/createDraftMessage";
+import { cardDesigns } from "@/lib/data/CardDesign/cardDesigns";
 
 const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
   try {
@@ -32,15 +36,18 @@ export default function MemberFormModal({
   id: number;
   onClose: () => void;
 }) {
+  const [mentorId, setMentorId] = useState(id);
   const [memberName, setMemberName] = useState("");
   const [message, setMessage] = useState("");
   const [cardDesign, setCardDesign] = useState<CardDesignType | null>(null);
   const [height, setHeight] = useState('auto');
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
+  const [isDraftModalOpen, setIsDraftModalOpen] = useState(false);
+  const [isCheckModalOpen, setIsCheckModalOpen] = useState(false);
   const textareaRef = useRef<any>(null);
 
   const mentorsData = useContext(MentorsDataContext);
-  const mentorData = mentorsData.find((item) => item.id === id);
+  const mentorData = mentorsData.find((item) => item.id === mentorId);
 
   const handleMessageChange = (e: { target: { value: SetStateAction<string>; }; }) => {
     setMessage(e.target.value);
@@ -54,16 +61,47 @@ export default function MemberFormModal({
     setIsImgModalOpen(!isImgModalOpen);
   };
 
+  const handleDraftModal = () => {
+    setIsDraftModalOpen(!isDraftModalOpen);
+  };
+
+  const handleCheckModal = () => {
+    setIsCheckModalOpen(!isCheckModalOpen);
+  };
+
+  const handleClose = () => {
+    if (memberName.trim() === "" && message.trim() === "") {
+      onClose();
+    } else {
+      setIsCheckModalOpen(true);
+    };
+  };
+
   const handleCardDesign = (cardDesign: CardDesignType) => {
     setCardDesign(cardDesign);
+  };
+
+  const saveMessage = () => {
+    createDraftMessage(mentorId, message, memberName, cardDesign?.id);
+    onClose();
+  };
+
+  const setDraftMessage = (id: number, body?: string, from?: string, cardDesign?: number) => {
+    const cardData = cardDesigns.find(item => item.id === cardDesign);
+
+    setMentorId(id);
+    setMessage(body ? body : "");
+    setMemberName(from ? from : "");
+    setCardDesign(cardData ? cardData : null);
+    setIsDraftModalOpen(false);
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    if (memberName !== "" && message !== "" && cardDesign) {
+    if (memberName.trim() !== "" && message.trim() !== "" && cardDesign) {
       try {
-        await postMessage(memberName, message, cardDesign.id, id);
+        await postMessage(memberName, message, cardDesign.id, mentorId);
         toast.success("メッセージを送信しました");
         onClose();
       } catch (e) {
@@ -77,10 +115,13 @@ export default function MemberFormModal({
     <div className={styles["modal-form"]}>
       <div
         className={styles["modal-form-container"]}
-        style={isImgModalOpen ? { display: "none" } : { display: "flex" }}
+        style={isImgModalOpen || isDraftModalOpen ? { display: "none" } : { display: "flex" }}
       >
-        <div className={styles["close-button"]} onClick={onClose}>
+        <div className={styles["close-button"]} onClick={handleClose}>
           <RxCross2 />
+        </div>
+        <div className={styles['top-left-menu-button']} onClick={handleDraftModal}>
+          下書き
         </div>
         <p className={styles['modal-title']}><span>{mentorData?.name}</span>へ</p>
         <div className={styles['index-container']}>
@@ -103,7 +144,7 @@ export default function MemberFormModal({
           <div className={styles['input-container']}>
             <div className={styles['input-top-box']}>
               <p className={styles['input-top-title']}>Message</p>
-              <TextLengthGauge textLength={message.length} maxLength={100} />
+              <TextLengthGauge textLength={message.length} maxLength={1200} />
             </div>
             <div className={styles["textarea-box"]}>
               <textarea
@@ -142,7 +183,7 @@ export default function MemberFormModal({
             )}
             </div>
           </div>
-          {(memberName === "" || message === "" || cardDesign === null) ? (
+          {(memberName.trim() === "" || message.trim() === "" || cardDesign === null) ? (
             <div className={styles['send-disable-button']}>
               メッセージを送信
             </div>
@@ -154,12 +195,25 @@ export default function MemberFormModal({
         </div>
       </div>
     </div>
-    <div className={styles["modal-bg-black"]} onClick={onClose} />
+    <div className={styles["modal-bg-black"]} onClick={handleClose} />
     {isImgModalOpen && (
       <ImageFormModal
         designNumber={cardDesign ? cardDesign.id : 0}
         onClose={handleImgModal}
         setCardDesign={handleCardDesign}
+      />
+    )}
+    {isDraftModalOpen && (
+      <MessageDraftModal
+        onClose={handleDraftModal}
+        onSelect={setDraftMessage}
+      />
+    )}
+    {isCheckModalOpen && (
+      <CloseCheckModal
+        onClose={handleCheckModal}
+        onAllClose={onClose}
+        onSave={saveMessage}
       />
     )}
     </>
