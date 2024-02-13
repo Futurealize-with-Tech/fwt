@@ -1,12 +1,3 @@
-/*
-  Warnings:
-
-  - You are about to drop the `MentorTest` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropTable
-DROP TABLE "MentorTest";
-
 -- CreateTable
 CREATE TABLE "Mentor" (
     "id" SERIAL NOT NULL,
