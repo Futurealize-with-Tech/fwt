@@ -61,7 +61,7 @@ export default function ImageFormModal({
     <div className={modalStyles['modal-form']}>
       <div className={modalStyles["modal-form-container"]}>
         <div className={modalStyles["modal-title"]}>画像デザインを選択</div>
-        <div className={styles["before-button"]} onClick={onClose}>
+        <div className={modalStyles["before-button"]} onClick={onClose}>
           <IoArrowBackOutline />
         </div>
         <div className={styles['img-container']}>
