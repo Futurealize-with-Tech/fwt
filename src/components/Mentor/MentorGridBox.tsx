@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import styles from "./mentor.module.scss";
 import Image from "next/image";
 import CourseBox from "../Course/CourseBox";
@@ -7,8 +8,9 @@ import RegionBox from "../Region/RegionBox";
 import SendMessageButton from "../UI/Button/Mentor/SendMessageButton";
 import { MentorType } from "@/types/mentorType";
 import MentorDefaultImage from '@/public/mentor/user_default.jpg';
-import { useEffect, useState } from "react";
 import { getSentMentorData } from "@/lib/Function/Mentor/getSentMentorData";
+import { MdArrowForwardIos } from "react-icons/md";
+import MentorListBox from "./MentorListBox";
 
 export default function MentorGridBox({
   mentorData,
@@ -25,6 +27,7 @@ export default function MentorGridBox({
   }, [mentorData.id]);
 
   return (
+    <>
     <div className={styles["container"]}>
       {mentorData.imageUrl ? (
         <img
@@ -57,5 +60,7 @@ export default function MentorGridBox({
         <SendMessageButton id={mentorData.id} isSent={isSent} />
       </div>
     </div>
+    <MentorListBox mentorData={mentorData} isSent={isSent} />
+    </>
   );
 }
