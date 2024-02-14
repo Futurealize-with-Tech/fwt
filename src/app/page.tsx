@@ -4,7 +4,7 @@ import MentorsDataProvider from '@/middleware/MentorsDataProvider';
 import { MentorType } from '@/types/mentorType';
 
 async function getMentorsData() {
-    const res = await fetch('/mentors');
+    const res = await fetch('/api/v1/mentors');
 
     const data = await res.json();
     return data.mentors as MentorType[];

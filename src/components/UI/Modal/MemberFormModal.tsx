@@ -19,7 +19,7 @@ import { getSentMentorData } from "@/lib/Function/Mentor/getSentMentorData";
 
 const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
   try {
-    const res = await fetch('/form', {
+    const res = await fetch('/api/v1/form', {
       method: "POST",
       body: JSON.stringify({memberName, body, cardDesign, mentorId}),
       headers: {
