@@ -7,17 +7,31 @@ import { mentors } from '@/lib/data/mentors';
 import NarrowMentorButton from '../UI/Button/Mentor/NarrowMentorButton';
 import { returnMentorByCategory, returnMentorByRegion } from '@/lib/Function/Mentor/returnMentor';
 import { MentorType } from '@/types/mentorType';
+import { useSearchParams } from 'next/navigation';
 
 export default function MentorIndex({
     mentorsData,
 }: {
     mentorsData: MentorType[],
 }) {
+    const searchKeyword = useSearchParams().get('keyword');
     const [selectRegions, setSelectRegions] = useState<string[]>([]);
     const [selectCourses, setSelectCourses] = useState<string[]>([]);
 
+    const searchByKeyword = (name: string) => {
+        if (searchKeyword) {
+            return name.includes(searchKeyword);
+        } else {
+            return true;
+        }
+    };
+
     const mentorIndex = mentorsData.filter((item) => {
-        if (returnMentorByCategory(selectCourses, item) && returnMentorByRegion(selectRegions, item)) {
+        if (
+            returnMentorByCategory(selectCourses, item)
+            && returnMentorByRegion(selectRegions, item)
+            && searchByKeyword(item.name)
+        ) {
             return item;
         } else {
             return;
