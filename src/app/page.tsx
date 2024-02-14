@@ -13,7 +13,7 @@ import { mentors } from '@/lib/data/mentors.ts'
 
 export default async function Home() {
     // const mentorsData = await getMentorsData();
-    const mentorsData = mentorsData();
+    const mentorsData = mentors;
 
     return (
         <div className={styles['container']}>
