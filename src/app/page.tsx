@@ -2,7 +2,7 @@ import styles from './page.module.scss';
 import MentorIndex from '@/components/Home/MentorIndex';
 import MentorsDataProvider from '@/middleware/MentorsDataProvider';
 import { MentorType } from '@/types/mentorType';
-import { mentors } from '@/lib/data/mentors.ts'
+import { mentors } from '@/lib/data/mentors';
 
 // async function getMentorsData() {
 //     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/mentors`);
