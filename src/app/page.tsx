@@ -1,5 +1,6 @@
 import styles from './page.module.scss';
 import MentorIndex from '@/components/Home/MentorIndex';
+import { mentors } from '@/lib/data/mentors';
 import MentorsDataProvider from '@/middleware/MentorsDataProvider';
 import { MentorType } from '@/types/mentorType';
 import { mentors } from '@/lib/data/mentors';
