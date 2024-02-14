@@ -1,3 +1,15 @@
+@mixin send-button($color) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.4rem;
+    background-color: rgba($color, 0.8);
+}
+
 // narrow
 
 .narrow-button-bg {
@@ -27,15 +39,10 @@
 // send message
 
 .send-message-button {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.4rem 0.6rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 0.4rem;
-    // color: rgb(var(--white));
-    background-color: rgba(var(--primary-pink), 0.8);
+    @include send-button(var(--primary-pink));
     cursor: pointer;
+}
+
+.disable-send-message-button {
+    @include send-button(var(--pale-gray));
 }
