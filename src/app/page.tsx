@@ -4,7 +4,7 @@ import MentorsDataProvider from '@/middleware/MentorsDataProvider';
 import { MentorType } from '@/types/mentorType';
 
 async function getMentorsData() {
-    const res = await fetch('/api/v1/mentors');
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/mentors`);
 
     const data = await res.json();
     return data.mentors as MentorType[];
