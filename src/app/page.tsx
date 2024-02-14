@@ -14,12 +14,12 @@ import { mentors } from '@/lib/data/mentors';
 
 export default async function Home() {
     // const mentorsData = await getMentorsData();
-    const mentorsData = mentors;
+    // const mentorsData = mentors;
 
     return (
         <div className={styles['container']}>
-            <MentorsDataProvider mentors={mentorsData}>
-                <MentorIndex mentorsData={mentorsData} />
+            <MentorsDataProvider mentors={mentors}>
+                <MentorIndex mentorsData={mentors} />
             </MentorsDataProvider>
         </div>
     )
