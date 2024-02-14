@@ -4,7 +4,11 @@ import { useState } from 'react';
 import styles from './mentorButton.module.scss';
 import MemberFormModal from '../../Modal/MemberFormModal';
 
-export default function SendMessageButton({id}: {id: number}) {
+export default function SendMessageButton({
+    id, isSent,
+}: {
+    id: number, isSent: boolean,
+}) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const handleModal = () => {
@@ -13,9 +17,15 @@ export default function SendMessageButton({id}: {id: number}) {
 
     return (
         <>
-        <div className={styles['send-message-button']} onClick={handleModal}>
-            メッセージを送る
-        </div>
+        {isSent ? (
+            <div className={styles['disable-send-message-button']}>
+                送信済みです
+            </div>
+        ) : (
+            <div className={styles['send-message-button']} onClick={handleModal}>
+                メッセージを送る
+            </div>
+        )}
         {isModalOpen && (
             <MemberFormModal id={id} onClose={handleModal} />
         )}

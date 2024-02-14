@@ -7,12 +7,23 @@ import RegionBox from "../Region/RegionBox";
 import SendMessageButton from "../UI/Button/Mentor/SendMessageButton";
 import { MentorType } from "@/types/mentorType";
 import MentorDefaultImage from '@/public/mentor/user_default.jpg';
+import { useEffect, useState } from "react";
+import { getSentMentorData } from "@/lib/Function/Mentor/getSentMentorData";
 
 export default function MentorGridBox({
   mentorData,
 }: {
   mentorData: MentorType;
 }) {
+  const [isSent, setIsSent] = useState(false);
+
+  useEffect(() => {
+    const mentorIds = getSentMentorData();
+    if (mentorIds.includes(mentorData.id)) {
+      setIsSent(true);
+    };
+  }, [mentorData.id]);
+
   return (
     <div className={styles["container"]}>
       {mentorData.imageUrl ? (
@@ -43,7 +54,7 @@ export default function MentorGridBox({
             </div>
           </div>
         </div>
-        <SendMessageButton id={mentorData.id} />
+        <SendMessageButton id={mentorData.id} isSent={isSent} />
       </div>
     </div>
   );

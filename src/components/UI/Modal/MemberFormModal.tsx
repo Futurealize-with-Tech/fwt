@@ -14,6 +14,8 @@ import CloseCheckModal from "./CloseCheckModal";
 import MessageDraftModal from "./MessageDraftModal";
 import { createDraftMessage } from "@/lib/Function/Message/createDraftMessage";
 import { cardDesigns } from "@/lib/data/CardDesign/cardDesigns";
+import { saveSentMentorData } from "@/lib/Function/Mentor/saveSentMentorData";
+import { getSentMentorData } from "@/lib/Function/Mentor/getSentMentorData";
 
 const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
   try {
@@ -98,14 +100,20 @@ export default function MemberFormModal({
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const mentorIds = getSentMentorData();
 
     if (memberName.trim() !== "" && message.trim() !== "" && cardDesign) {
-      try {
-        await postMessage(memberName, message, cardDesign.id, mentorId);
-        toast.success("メッセージを送信しました");
-        onClose();
-      } catch (e) {
-        toast.error("メッセージの送信に失敗しました");
+      if (mentorIds.includes(id)) {
+        toast.error("このメンターには既にメッセージを送信しています");
+      } else {
+        try {
+          await postMessage(memberName, message, cardDesign.id, mentorId);
+          saveSentMentorData(mentorData!.id);
+          toast.success("メッセージを送信しました");
+          onClose();
+        } catch (e) {
+          toast.error("メッセージの送信に失敗しました");
+        }
       }
     };
   };
