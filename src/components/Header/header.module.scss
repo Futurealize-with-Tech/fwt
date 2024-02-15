@@ -46,17 +46,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: 1.5rem;
+    padding-left: 1.1rem;
 }
 
 .title-logo-image {
     width: auto;
     height: 60%;
-    display: none;
+    // display: none;
     cursor: pointer;
-    @media screen and (min-width: 481px) {
-        display: block;
-    }
+    // @media screen and (min-width: 481px) {
+    //     display: block;
+    // }
 }
 
 .logo-image {

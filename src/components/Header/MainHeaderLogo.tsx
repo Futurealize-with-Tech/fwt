@@ -9,7 +9,7 @@ export default function MainHeaderLogo() {
     return (
         <>
         <Image src={TitleLogoImage} alt='Featureaize with Tech！' width={200} className={styles['title-logo-image']} />
-        <Image src={LogoImage} alt='Featureaize with Tech！' width={200} className={styles['logo-image']} />
+        {/* <Image src={LogoImage} alt='Featureaize with Tech！' width={200} className={styles['logo-image']} /> */}
         </>
     );
 };
