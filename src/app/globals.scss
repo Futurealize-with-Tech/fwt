@@ -79,6 +79,10 @@ textarea {
     background-color: none;
 }
 
+img {
+    object-fit: cover;
+}
+
 .all-container {
     width: 100%;
     min-height: 100vh;
