@@ -21,7 +21,7 @@ const postMessage = async(memberName: string, body: string, cardDesign: number, 
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/form`, {
       method: "POST",
-      body: JSON.stringify({memberName: memberName, body: body, cardDesign: cardDesign, mentorId: mentorId}),
+      body: JSON.stringify({memberName, body, cardDesign, mentorId}),
       headers: {
         "Content-type": "application/json",
       }
@@ -107,15 +107,10 @@ export default function MemberFormModal({
         toast.error("このメンターには既にメッセージを送信しています");
       } else {
         try {
-          await postMessage(memberName, message, cardDesign.id, mentorId)
-          .then((res) => {
-            saveSentMentorData(mentorData!.id);
-            toast.success("メッセージを送信しました！");
-            onClose();
-          })
-          .catch((e) => {
-            toast.error("メッセージの送信に失敗しました");
-          })
+          await postMessage(memberName, message, cardDesign.id, mentorId);
+          saveSentMentorData(mentorData!.id);
+          toast.success("メッセージを送信しました");
+          onClose();
         } catch (e) {
           toast.error("メッセージの送信に失敗しました");
         }
