@@ -8,10 +8,10 @@ export const POST = async (req: Request, res: NextResponse) => {
     await prismaConnect();
     const messageData = await prisma.message.create({
       data: {
-        memberName,
-        body,
-        cardDesign,
-        mentorId,
+        memberName: memberName,
+        body: body,
+        cardDesign: cardDesign,
+        mentorId: mentorId,
       },
     });
     return NextResponse.json({ messageData }, { status: 201 });
