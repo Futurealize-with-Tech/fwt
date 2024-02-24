@@ -11,7 +11,7 @@ export const POST = async (req: Request, res: NextResponse) => {
         memberName: memberName,
         body: body,
         cardDesign: cardDesign,
-        mentorId: mentorId,
+        mentorId: mentorId
       },
     });
     return NextResponse.json({ messageData }, { status: 201 });

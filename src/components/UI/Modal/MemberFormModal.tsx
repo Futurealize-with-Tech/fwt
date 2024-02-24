@@ -110,7 +110,7 @@ export default function MemberFormModal({
           await postMessage(memberName, message, cardDesign.id, mentorId)
           .then((res) => {
             saveSentMentorData(mentorData!.id);
-            toast.success("メッセージを送信しました");
+            toast.success("メッセージを送信しました！");
             onClose();
           })
           .catch((e) => {
