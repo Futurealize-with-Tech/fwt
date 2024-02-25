@@ -122,10 +122,10 @@ export default function MemberFormModal({
         toast.error("このメンターには既にメッセージを送信しています");
       } else {
         try {
-          setIsLoading(false);
           await postMessage(memberName, message, cardDesign.id, mentorId);
           saveSentMentorData(mentorData!.id);
           toast.success("メッセージを送信しました");
+          setIsLoading(false);
           onClose();
         } catch (e) {
           setIsLoading(false);
