@@ -16,6 +16,7 @@ import { createDraftMessage } from "@/lib/Function/Message/createDraftMessage";
 import { cardDesigns } from "@/lib/data/CardDesign/cardDesigns";
 import { saveSentMentorData } from "@/lib/Function/Mentor/saveSentMentorData";
 import { getSentMentorData } from "@/lib/Function/Mentor/getSentMentorData";
+import LoadingModal from "./LoadingModal";
 
 const postMessage = async (
   memberName: string,
@@ -46,6 +47,8 @@ export default function MemberFormModal({
   const [memberName, setMemberName] = useState("");
   const [message, setMessage] = useState("");
   const [cardDesign, setCardDesign] = useState<CardDesignType | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const [height, setHeight] = useState("auto");
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
   const [isDraftModalOpen, setIsDraftModalOpen] = useState(false);
@@ -112,17 +115,20 @@ export default function MemberFormModal({
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const mentorIds = getSentMentorData();
+    setIsLoading(true);
 
     if (memberName.trim() !== "" && message.trim() !== "" && cardDesign) {
       if (mentorIds.includes(id)) {
         toast.error("このメンターには既にメッセージを送信しています");
       } else {
         try {
+          setIsLoading(false);
           await postMessage(memberName, message, cardDesign.id, mentorId);
           saveSentMentorData(mentorData!.id);
           toast.success("メッセージを送信しました");
           onClose();
         } catch (e) {
+          setIsLoading(false);
           toast.error("メッセージの送信に失敗しました");
         }
       }
@@ -262,6 +268,7 @@ export default function MemberFormModal({
           onSave={saveMessage}
         />
       )}
+      {isLoading && <LoadingModal />}
     </>
   );
 }

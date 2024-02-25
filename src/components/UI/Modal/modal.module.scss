@@ -462,3 +462,26 @@
   @include top-menu-button();
   right: 0.8rem;
 }
+
+//loading
+
+.non-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1200;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.progress-bar {
+  height: 0.4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transform-origin: 0%;
+  background: linear-gradient(135deg, rgba(var(--primary-pink),1) 0%, rgba(var(--primary-purple),1) 100%);
+}
