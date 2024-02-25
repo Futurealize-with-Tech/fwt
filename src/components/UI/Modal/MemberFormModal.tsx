@@ -4,7 +4,7 @@ import { SetStateAction, useContext, useRef, useState } from "react";
 import styles from "./modal.module.scss";
 import Image from "next/image";
 import ImageFormModal from "./ImageFormModal";
-import TextLengthGauge from '@/components/UI/Form/TextLengthGauge';
+import TextLengthGauge from "@/components/UI/Form/TextLengthGauge";
 import { CardDesignType } from "@/types/cardDesignType";
 import { toast } from "react-toastify";
 import { RxCross2 } from "react-icons/rx";
@@ -17,18 +17,22 @@ import { cardDesigns } from "@/lib/data/CardDesign/cardDesigns";
 import { saveSentMentorData } from "@/lib/Function/Mentor/saveSentMentorData";
 import { getSentMentorData } from "@/lib/Function/Mentor/getSentMentorData";
 
-const postMessage = async(memberName: string, body: string, cardDesign: number, mentorId: number) => {
+const postMessage = async (
+  memberName: string,
+  body: string,
+  cardDesign: number,
+  mentorId: number
+) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/form`, {
+    const res = await fetch(`/api/v1/form`, {
       method: "POST",
-      body: JSON.stringify({memberName, body, cardDesign, mentorId}),
+      body: JSON.stringify({ memberName, body, cardDesign, mentorId }),
       headers: {
         "Content-type": "application/json",
-      }
+      },
     });
     return res.json();
-  } catch (error) {
-  }
+  } catch (error) {}
 };
 
 export default function MemberFormModal({
@@ -42,7 +46,7 @@ export default function MemberFormModal({
   const [memberName, setMemberName] = useState("");
   const [message, setMessage] = useState("");
   const [cardDesign, setCardDesign] = useState<CardDesignType | null>(null);
-  const [height, setHeight] = useState('auto');
+  const [height, setHeight] = useState("auto");
   const [isImgModalOpen, setIsImgModalOpen] = useState(false);
   const [isDraftModalOpen, setIsDraftModalOpen] = useState(false);
   const [isCheckModalOpen, setIsCheckModalOpen] = useState(false);
@@ -51,10 +55,12 @@ export default function MemberFormModal({
   const mentorsData = useContext(MentorsDataContext);
   const mentorData = mentorsData.find((item) => item.id === mentorId);
 
-  const handleMessageChange = (e: { target: { value: SetStateAction<string>; }; }) => {
+  const handleMessageChange = (e: {
+    target: { value: SetStateAction<string> };
+  }) => {
     setMessage(e.target.value);
     const element = textareaRef.current;
-    element.style.height = 'auto';
+    element.style.height = "auto";
     element.style.height = `${element.scrollHeight}px`;
     setHeight(`${element.scrollHeight}px`);
   };
@@ -76,7 +82,7 @@ export default function MemberFormModal({
       onClose();
     } else {
       setIsCheckModalOpen(true);
-    };
+    }
   };
 
   const handleCardDesign = (cardDesign: CardDesignType) => {
@@ -88,8 +94,13 @@ export default function MemberFormModal({
     onClose();
   };
 
-  const setDraftMessage = (id: number, body?: string, from?: string, cardDesign?: number) => {
-    const cardData = cardDesigns.find(item => item.id === cardDesign);
+  const setDraftMessage = (
+    id: number,
+    body?: string,
+    from?: string,
+    cardDesign?: number
+  ) => {
+    const cardData = cardDesigns.find((item) => item.id === cardDesign);
 
     setMentorId(id);
     setMessage(body ? body : "");
@@ -115,115 +126,142 @@ export default function MemberFormModal({
           toast.error("メッセージの送信に失敗しました");
         }
       }
-    };
+    }
   };
 
   return (
     <>
-    <div className={styles["modal-form"]}>
-      <div
-        className={styles["modal-form-container"]}
-        style={isImgModalOpen || isDraftModalOpen ? { display: "none" } : { display: "flex" }}
-      >
-        <div className={styles["close-button"]} onClick={handleClose}>
-          <RxCross2 />
-        </div>
-        <div className={styles['top-left-menu-button']} onClick={handleDraftModal}>
-          下書き
-        </div>
-        <p className={styles['modal-title']}><span>{mentorData?.name}</span>へ</p>
-        <div className={styles['index-container']}>
-          <div className={styles['input-container']}>
-            <div className={styles['input-top-box']}>
-              <p className={styles['input-top-title']}>From</p>
-              <TextLengthGauge textLength={memberName.length} maxLength={30} />
-            </div>
-            <div className={styles["input-box"]}>
-              <input
-                type="text"
-                className={styles["input"]}
-                placeholder="メンバー名を入力"
-                maxLength={50}
-                value={memberName}
-                onChange={(e) => setMemberName(e.target.value)}
-              />
-            </div>
+      <div className={styles["modal-form"]}>
+        <div
+          className={styles["modal-form-container"]}
+          style={
+            isImgModalOpen || isDraftModalOpen
+              ? { display: "none" }
+              : { display: "flex" }
+          }
+        >
+          <div className={styles["close-button"]} onClick={handleClose}>
+            <RxCross2 />
           </div>
-          <div className={styles['input-container']}>
-            <div className={styles['input-top-box']}>
-              <p className={styles['input-top-title']}>Message</p>
-              <TextLengthGauge textLength={message.length} maxLength={1200} />
-            </div>
-            <div className={styles["textarea-box"]}>
-              <textarea
-                className={styles["textarea"]}
-                placeholder="メッセージを800文字以内で入力"
-                maxLength={1500}
-                value={message}
-                onChange={handleMessageChange}
-                ref={textareaRef}
-                style={{height}}
-              />
-            </div>
+          <div
+            className={styles["top-left-menu-button"]}
+            onClick={handleDraftModal}
+          >
+            下書き
           </div>
-          <div className={styles['input-container']}>
-            <div className={styles['input-top-box']}>
-              <div className={styles['input-top-title']}>Card Design</div>
+          <p className={styles["modal-title"]}>
+            <span>{mentorData?.name}</span>へ
+          </p>
+          <div className={styles["index-container"]}>
+            <div className={styles["input-container"]}>
+              <div className={styles["input-top-box"]}>
+                <p className={styles["input-top-title"]}>From</p>
+                <TextLengthGauge
+                  textLength={memberName.length}
+                  maxLength={30}
+                />
+              </div>
+              <div className={styles["input-box"]}>
+                <input
+                  type="text"
+                  className={styles["input"]}
+                  placeholder="メンバー名を入力"
+                  maxLength={50}
+                  value={memberName}
+                  onChange={(e) => setMemberName(e.target.value)}
+                />
+              </div>
             </div>
-            <div className={styles['img-select-container']}>
-            {cardDesign !== null ? (
-              <>
-              <div className={styles['img-info-box']}>
-                <Image src={cardDesign.image} alt={cardDesign.name} width={50} className={styles['img-info-image']} />
-                <p className={styles['img-info-name']}>{cardDesign.name}</p>
+            <div className={styles["input-container"]}>
+              <div className={styles["input-top-box"]}>
+                <p className={styles["input-top-title"]}>Message</p>
+                <TextLengthGauge textLength={message.length} maxLength={1200} />
               </div>
-              <div className={styles['img-select-icon']} onClick={handleImgModal}>
-                <CgSelectO />
+              <div className={styles["textarea-box"]}>
+                <textarea
+                  className={styles["textarea"]}
+                  placeholder="メッセージを800文字以内で入力"
+                  maxLength={1500}
+                  value={message}
+                  onChange={handleMessageChange}
+                  ref={textareaRef}
+                  style={{ height }}
+                />
               </div>
-              </>
+            </div>
+            <div className={styles["input-container"]}>
+              <div className={styles["input-top-box"]}>
+                <div className={styles["input-top-title"]}>Card Design</div>
+              </div>
+              <div className={styles["img-select-container"]}>
+                {cardDesign !== null ? (
+                  <>
+                    <div className={styles["img-info-box"]}>
+                      <Image
+                        src={cardDesign.image}
+                        alt={cardDesign.name}
+                        width={50}
+                        className={styles["img-info-image"]}
+                      />
+                      <p className={styles["img-info-name"]}>
+                        {cardDesign.name}
+                      </p>
+                    </div>
+                    <div
+                      className={styles["img-select-icon"]}
+                      onClick={handleImgModal}
+                    >
+                      <CgSelectO />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className={styles["img-info-name"]}>画像を選択</div>
+                    <div
+                      className={styles["img-select-icon"]}
+                      onClick={handleImgModal}
+                    >
+                      <CgAdd />
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+            {memberName.trim() === "" ||
+            message.trim() === "" ||
+            cardDesign === null ? (
+              <div className={styles["send-disable-button"]}>
+                メッセージを送信
+              </div>
             ) : (
-              <>
-              <div className={styles['img-info-name']}>画像を選択</div>
-              <div className={styles['img-select-icon']} onClick={handleImgModal}>
-                <CgAdd />
+              <div className={styles["send-button"]} onClick={handleSubmit}>
+                メッセージを送信
               </div>
-              </>
             )}
-            </div>
           </div>
-          {(memberName.trim() === "" || message.trim() === "" || cardDesign === null) ? (
-            <div className={styles['send-disable-button']}>
-              メッセージを送信
-            </div>
-          ) : (
-            <div className={styles['send-button']} onClick={handleSubmit}>
-              メッセージを送信
-            </div>
-          )}
         </div>
       </div>
-    </div>
-    <div className={styles["modal-bg-black"]} onClick={handleClose} />
-    {isImgModalOpen && (
-      <ImageFormModal
-        designNumber={cardDesign ? cardDesign.id : 0}
-        onClose={handleImgModal}
-        setCardDesign={handleCardDesign}
-      />
-    )}
-    {isDraftModalOpen && (
-      <MessageDraftModal
-        onClose={handleDraftModal}
-        onSelect={setDraftMessage}
-      />
-    )}
-    {isCheckModalOpen && (
-      <CloseCheckModal
-        onClose={handleCheckModal}
-        onAllClose={onClose}
-        onSave={saveMessage}
-      />
-    )}
+      <div className={styles["modal-bg-black"]} onClick={handleClose} />
+      {isImgModalOpen && (
+        <ImageFormModal
+          designNumber={cardDesign ? cardDesign.id : 0}
+          onClose={handleImgModal}
+          setCardDesign={handleCardDesign}
+        />
+      )}
+      {isDraftModalOpen && (
+        <MessageDraftModal
+          onClose={handleDraftModal}
+          onSelect={setDraftMessage}
+        />
+      )}
+      {isCheckModalOpen && (
+        <CloseCheckModal
+          onClose={handleCheckModal}
+          onAllClose={onClose}
+          onSave={saveMessage}
+        />
+      )}
     </>
   );
-};
+}
