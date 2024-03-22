@@ -4,6 +4,7 @@ import MentorsDataProvider from '@/middleware/MentorsDataProvider';
 import { MentorType } from '@/types/mentorType';
 import TopLogo from '@/public/app/fwt-logo.png';
 import Image from 'next/image';
+import { compareIds } from '@/lib/Function/Mentor/sortMentorById';
 
 async function getMentorsData() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/mentors`);
@@ -14,6 +15,7 @@ async function getMentorsData() {
 
 export default async function Home() {
     const mentorsData = await getMentorsData();
+    const sortedMentorsData = mentorsData.sort(compareIds);
 
     return (
         <div className={styles['container']}>
