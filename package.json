@@ -25,7 +25,7 @@
     "@types/react": "^18.2.47",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",
-    "prisma": "^5.9.1",
+    "prisma": "^5.8.1",
     "react-toastify": "^10.0.4",
     "sass": "^1.69.7",
     "ts-node": "^10.9.2",
