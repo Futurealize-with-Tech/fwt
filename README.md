@@ -99,6 +99,19 @@
 
     $ npx prisma generate
 
+### 6. ローカルサーバーの起動
+開発環境で実行するには、下記のコマンド。
+
+    $ npm run dev
+
+ビルドコマンド ↓
+
+    $ npm run build
+
+ビルドしたものを実行 ↓
+
+    $ npm run start
+
 ## 🍕 Prisma Studio
 `Prisma Studio`という接続したDBをGUIで操作できるツールがあります。
 下記のコマンドで実行できます。
