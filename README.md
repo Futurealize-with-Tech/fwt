@@ -108,3 +108,10 @@
 ## ⚙️ 環境変数
 - NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api/v1
 - DATABASE_URL='DBのURL'
+
+## メッセージ
+このプロジェクトはOSSです！！
+不具合などあればぜひ気軽に`issue`飛ばしてみてください！
+<br />
+<br />
+質問したいことがあれば、[いのれん](https://twitter.com/inoren_lit)まで！（LiT!生ならフォロー返します！)
