@@ -99,7 +99,7 @@
 
     $ npx prisma generate
 
-## Prisma Studio
+## 🍕 Prisma Studio
 `Prisma Studio`という接続したDBをGUIで操作できるツールがあります。
 下記のコマンドで実行できます。
 
