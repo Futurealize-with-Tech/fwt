@@ -1,5 +1,5 @@
-# 🥰 Futurealize with Tech
-略称は【FWT】
+# 🥰 Futurealize with Tech！
+`FwT`のメッセージ募集用サイトのリポジトリです
 
 ## 🤩 概要
 卒業メンターにメッセージを共有できるサービス！！
@@ -54,6 +54,7 @@
     │   │
     │   └── type/ (型定義)
     │
+    ├── (.env)
     ├── .eslintrc.json
     ├── .gitignore
     ├── next-env.d.ts
@@ -63,58 +64,47 @@
     ├── README.md
     └── tsconfig.json
 
-## 🪛 importの順番
+## 🗒️ セットアップ方法
+`FwT`のサイトのセットアップ方法は以下のとおりです。
+### 1. リポジトリをクローン
+指定のディレクトリで、以下のコマンドを実行。
 
-1. ReactHooks
-2. styles
-3. motion (framer-motion)
-4. next (Image, Link etc...)
-5. context
-6. ライブラリ
-7. lib
-8. react-icons
-9. 画像系
+    $ git clone https://github.com/Futurealize-with-Tech/fwt.git
 
-## 👔 CSS styleの順番
+### 2. npmパッケージをインストール
+上記でクローンしたディレクトリに移動し、以下のコマンドを実行。
 
-1. box-sizing
-2. width, height, max, min
-3. position (relative以外)
-4. display
-5. margin
-6. padding
-7. font系
-8. border系 (radiusなど)
-9. outline
-10. color (font → border → background)
-11. 画像系
-12. position: relative;
-13. cursor
+    $ npm install
 
-## 🌈 CSSの変数を使おう
-`global.scss`の`:root`内で、色などを指定する。(できればRGB値で)
-<br/>
-<br/>
-下記のように、指定する。
+### 3. Supabaseのセットアップ
+2024年は`Supabase`を採用しましたが、RDBなら何でも構いません。
+※ `PostgreSQL`だとコードを書き換えずに使用できます。
 
-    :root {
-        --primary-pink: 249, 193, 207;
-    }
+調べながらセットアップしてみてください！！！
 
-そうすると下記のように色を指定することができる。
-
-    color: rgb(var(--primary-pink));
-
-RGB値で変数にしたいのは、下記のようにopacityを自由に調整できるから。
-
-    color: rgb(var(--primary-pink), 0.5);
-
-メインの色には`--primary-色`のように命名する。
-
-## 環境変数
-使っている環境変数は`Supabase`で使う以下の二つです。
+### 4. 環境変数の用意
+まずは、`.env`を作成してください。
+そして、使っている環境変数は以下の二つです。
 <br/>
 デプロイする際には、環境変数に以下のものを指定しないとプロジェクトが機能しません。
 
-- NEXT_PUBLIC_SUPABASE_URL
-- NEXT_PUBLIC_SUPABASE_ANON_KEY
+```
+- NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api/v1
+- DATABASE_URL='DBのURL'
+```
+上記の`DATABASE_URL`には、セットアップしたDBのURLを入れてください。(`PostgreSQL`なら`postgres://postgres.`から始まるもの)
+
+### 5. Prismaのセットアップ
+`Prisma`をローカルでセットアップします。
+
+    $ npx prisma generate
+
+## Prisma Studio
+`Prisma Studio`という接続したDBをGUIで操作できるツールがあります。
+下記のコマンドで実行できます。
+
+    $ npx prisma studio
+
+## ⚙️ 環境変数
+- NEXT_PUBLIC_API_BASE_URL=http://localhost:3000/api/v1
+- DATABASE_URL='DBのURL'
