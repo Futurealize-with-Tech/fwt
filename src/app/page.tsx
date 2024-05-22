@@ -5,6 +5,7 @@ import { MentorType } from '@/types/mentorType';
 import TopLogo from '@/public/app/fwt-logo.png';
 import Image from 'next/image';
 import { compareIds } from '@/lib/Function/Mentor/sortMentorById';
+import NotCallingMessage from '@/components/Home/NotCallingMessage';
 
 async function getMentorsData() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/mentors`);
@@ -14,6 +15,9 @@ async function getMentorsData() {
 }
 
 export default async function Home() {
+    // メッセージを募集したい場合にはtrueにする
+    const isWelcomeMessage = false;
+
     const mentorsData = await getMentorsData();
     const sortedMentorsData = mentorsData.sort(compareIds);
 
@@ -38,7 +42,11 @@ export default async function Home() {
                 <Image src={TopLogo} alt='logo' width={400} className={styles['top-image']} />
             </div>
             <MentorsDataProvider mentors={mentorsData}>
-                <MentorIndex mentorsData={mentorsData} />
+                {isWelcomeMessage ? (
+                    <MentorIndex mentorsData={mentorsData} />
+                ) : (
+                    <NotCallingMessage />
+                )}
             </MentorsDataProvider>
         </div>
     )
